@@ -1,5 +1,5 @@
 from django.contrib.auth.validators import UnicodeUsernameValidator
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 from rest_framework.validators import ValidationError
 
 from django.db.models import Q
@@ -16,12 +16,13 @@ class UsernameValidator(UnicodeUsernameValidator):
 
     User._meta.get_field('username').validators[1].limit_value = 150
 
-    def check_unique_email_and_name(data):
-        queryset = User.objects.filter(
-            Q(email=data.get("email", ""))
-            | Q(username=data.get("username"))
+
+def check_unique_email_and_name(data):
+    queryset = User.objects.filter(
+        Q(email=data.get("email", ""))
+        | Q(username=data.get("username"))
+    )
+    if queryset.exists():
+        raise serializers.ValidationError(
+            "Имя и email должны быть уникальными!"
         )
-        if queryset.exists():
-            raise serializers.ValidationError(
-                "Имя и email должны быть уникальными!"
-            )
