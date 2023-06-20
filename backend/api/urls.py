@@ -1,13 +1,10 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from users.views import (
+from api.views import (
     DeleteTokenView,
     ObtainTokenView,
-    UsersViewSet
-)
-
-from recipes.views import (
+    UsersViewSet,
     IngredientViewSet,
     RecipeViewSet,
     TagViewSet
