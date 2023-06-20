@@ -17,7 +17,7 @@ class UsernameValidator(UnicodeUsernameValidator):
 
     User._meta.get_field('username').validators[1].limit_value = 150
 
-    def check_unique_email_and_name(data):
+    def check_unique_email_and_name(self, data):
         queryset = User.objects.filter(
             Q(email=data.get("email", ""))
             | Q(username=data.get("username"))

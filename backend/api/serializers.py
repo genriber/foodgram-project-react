@@ -248,8 +248,6 @@ class RecipesSerializer(serializers.ModelSerializer):
                 user=request.user,
                 recipe=obj
             ).exists()
-        else:
-            return False
 
     def get_is_favorited(self, obj):
         request = self.context["request"]
@@ -258,8 +256,6 @@ class RecipesSerializer(serializers.ModelSerializer):
                 user=request.user,
                 recipe=obj
             ).exists()
-        else:
-            return False
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
