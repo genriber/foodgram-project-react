@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 volumes:
   static_value:
@@ -9,9 +9,7 @@ services:
 
   # back
   backend:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
+    image: genriber/foodgram-backend:latest
     volumes:
       - static_value:/app/static/
       - media_value:/app/media/
@@ -24,9 +22,7 @@ services:
 
   # front
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: genriber/foodgram-frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
 
